@@ -1,0 +1,620 @@
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+html *,
+html *::after,
+html *::before {
+    box-sizing: inherit;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f8fb;
+    font-family: "Inter", serif; /*Inter for most body text, Montserrat specified for headings*/
+    overflow: hidden;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    height: 100%;
+    overflow: hidden;
+}
+
+.content-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    border: 5px solid #ffffff; /*may need to alter for other screen sizes*/
+}
+
+.column-1 {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    position: relative;
+    background-color: #fafbfd;
+}
+
+.column-2 {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 50%;
+    min-height: 0;
+}
+
+.recipe-title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex: 0 0 auto;
+    font-family: "Montserrat", serif;
+    font-size: 38px;
+    font-weight: 700;
+    padding: 30px 40px 0 40px;
+    margin-bottom: 10px;
+}
+
+.recipe-time-servings-container {
+    display: flex;
+    flex-direction: row;
+    font-family: "Montserrat", serif;
+    font-size: 12px;
+    margin-left: 40px;
+    margin-right: 40px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.prep-time,
+.total-time,
+.servings {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    flex: 0 0 auto;
+}
+
+.prep-time-amount,
+.total-time-amount,
+.servings-amount {
+    font-weight: 700;
+}
+
+/* prep, time, and servings amounts font weights are all set in html */
+
+.product-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    padding: 5px;
+    margin: 15px 20px 15px 20px;
+    height: auto;
+}
+
+.product-image-container {
+    color: #3e3e3e; /*Placeholder, product image will be here*/
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 10px; /*Should be % or vw? */
+    width: 30%;
+}
+
+.product-image {
+    max-width: 100%;
+}
+
+.product-details-container {
+    color: #232e85;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    margin: 10px; /*Should be % or vw? */
+}
+
+.brand-name {
+    font-weight: 700;
+    /* margin-bottom: 5px; */
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: relative;
+    margin: 10px;
+}
+
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: var(--brand-color);
+    color: #ffffff;
+    height: 36px;
+    border-radius: 100px;
+    padding: 10px 20px 10px 20px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.ingredients-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    overflow-y: auto;
+}
+
+.ingredients-header {
+    color: var(--brand-color);
+    font-family: "Montserrat", serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 10px; /*correct way to add spacing?*/
+}
+
+.ingredients-details {
+    overflow-y: auto;
+}
+
+.scrollable-content-shadows-ingredients {
+    overflow-y: auto;
+    background:
+    /* Shadow Cover TOP */
+        linear-gradient(#fafbfd 30%, rgba(255, 255, 255, 0)) center top,
+        /* Shadow Cover BOTTOM */ linear-gradient(rgba(255, 255, 255, 0), #fafbfd 70%) center bottom,
+        /* Shadow TOP */ radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)) center top,
+        /* Shadow BOTTOM */ radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)) center
+            bottom;
+
+    background-repeat: no-repeat;
+    background-size:
+        100% 40px,
+        100% 40px,
+        100% 14px,
+        100% 14px;
+    background-attachment: local, local, scroll, scroll;
+}
+
+.scrollable-content-shadows-instructions {
+    overflow-y: auto;
+    background:
+    /* Shadow Cover TOP */
+        linear-gradient(#ffffff 30%, rgba(255, 255, 255, 0)) center top,
+        /* Shadow Cover BOTTOM */ linear-gradient(rgba(255, 255, 255, 0), #ffffff 70%) center bottom,
+        /* Shadow TOP */ radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)) center top,
+        /* Shadow BOTTOM */ radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0)) center
+            bottom;
+
+    background-repeat: no-repeat;
+    background-size:
+        100% 40px,
+        100% 40px,
+        100% 14px,
+        100% 14px;
+    background-attachment: local, local, scroll, scroll;
+}
+
+.featured-ingredient-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.indiv-featured-ingredient {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: baseline;
+    color: var(--brand-color);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.regular-ingredient-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.indiv-regular-ingredient {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+
+.ingredients-amount {
+    flex: 0 0 auto;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    margin-right: 0.5vw; /*not sure about correct units for spacing here*/
+}
+
+.ingredients-name {
+    flex: 1 1 auto;
+    font-size: 14px;
+    font-style: normal;
+}
+
+hr.div-line {
+    display: none;
+}
+
+.logo-image-container {
+    color: #3e3e3e; /* placeholder */
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin: 10px 20px 10px 20px;
+    gap: 10px;
+}
+
+.logo-image-container-small {
+    display: none;
+}
+
+.logo-1 {
+    height: 20px;
+    object-fit: contain;
+}
+
+.logo-2 {
+    height: 20px;
+    object-fit: contain;
+}
+
+.recipe-image-container {
+    color: #3e3e3e; /* placeholder */
+    margin: 15px 15px 15px 20px;
+    height: 40%;
+    /* width: 100%; */
+}
+
+.recipe-image-container-small {
+    display: none;
+}
+
+.recipe-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.instructions-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: left; */
+    padding: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    overflow-y: auto;
+}
+
+.step-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: left; */
+    overflow-y: auto;
+}
+
+.instructions-header {
+    color: var(--brand-color);
+    font-family: "Montserrat", serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+
+.individual-step-container {
+    margin-bottom: 10px;
+}
+
+.step-header {
+    color: var(--brand-color);
+    font-family: "Montserrat", serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+.step-details {
+    font-size: 14px;
+    font-style: normal;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+
+.powered-by-aa-logo {
+    height: 40px;
+}
+
+@media screen and (min-width: 800px) {
+    .content-container {
+        height: 575px;
+        width: 1000px;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 650px) {
+    .recipe-time-servings-container {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .indiv-regular-ingredient,
+    .indiv-featured-ingredient {
+        flex-direction: column;
+    }
+}
+
+@media screen and (min-width: 500px) and (max-width: 799px) {
+    .content-container {
+        width: 650px;
+        height: 550px;
+    }
+
+    .recipe-time-servings-container {
+        display: flex;
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+    }
+
+    .recipe-title {
+        font-size: 30px;
+    }
+
+    .product-card {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .product-details-container {
+        /* margin-top: 0px; */
+        flex: 1 1 0;
+    }
+
+    .brand-name {
+        font-size: 10px;
+    }
+
+    .product-name {
+        font-size: 12px;
+    }
+
+    .button-container {
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+
+    .button {
+        font-size: 11px;
+        padding: 10px 30px 10px 30px;
+        height: 30px;
+    }
+
+    .ingredients-header {
+        font-size: 14px;
+    }
+
+    .ingredients-amount,
+    .ingredients-name {
+        font-size: 12px;
+    }
+
+    .instructions-header {
+        font-size: 14px;
+    }
+
+    .step-header,
+    .step-details {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 499px) {
+    .content {
+        overflow-y: auto;
+    }
+
+    .content-container {
+        height: 100%;
+        width: 100%;
+        display: block;
+        overflow-y: auto;
+        border: none;
+    }
+
+    .recipe-title {
+        font-size: 26px;
+    }
+
+    .recipe-time-servings-container {
+        display: flex;
+        flex-direction: row;
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .recipe-image-container {
+        display: none;
+    }
+
+    .recipe-image-container-small {
+        display: flex; /*??*/
+        margin: 0px;
+    }
+
+    .recipe-image {
+        border-radius: 0px;
+        margin-top: 10px;
+        max-height: 225px;
+    }
+
+    .product-card {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0px;
+        padding-left: 20px;
+        padding-right: 20px;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .product-details-container {
+        /* margin-top: 0px; */
+        flex: 1 1 0;
+    }
+
+    .brand-name {
+        font-size: 10px;
+    }
+
+    .product-name {
+        font-size: 12px;
+    }
+
+    .button-container {
+        margin-top: 0px;
+        margin-bottom: 5px;
+    }
+
+    .button {
+        font-size: 11px;
+        padding: 10px 30px 10px 30px;
+        height: 30px;
+    }
+
+    .recipe-image {
+        max-height: 200px;
+    }
+
+    .ingredients-container {
+        flex: none;
+    }
+
+    .ingredients-header {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .ingredients-amount,
+    .ingredients-name {
+        font-size: 12px;
+    }
+
+    hr.div-line {
+        display: block;
+        width: 50%;
+        margin: 10px auto;
+        border: none;
+        border-top: 1px solid #ccc;
+    }
+
+    .column-2 {
+        background-color: #fafbfd;
+    }
+
+    .instructions-header {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .step-header,
+    .step-details {
+        font-size: 12px;
+    }
+
+    .scrollable-content-shadows-ingredients {
+        background: none;
+    }
+
+    .scrollable-content-shadows-instructions {
+        background: none;
+    }
+
+    .footer {
+        width: 100%;
+        height: 60px;
+    }
+
+    .powered-by-aa-logo {
+        height: 30px;
+    }
+
+    .logo-image-container {
+        display: none;
+    }
+
+    .logo-image-container-small {
+        color: #3e3e3e; /* placeholder */
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 10px 20px 10px 20px;
+        gap: 10px;
+    }
+}
+
+@media screen and (max-width: 349px) {
+    .indiv-featured-ingredient,
+    .indiv-regular-ingredient {
+        flex-direction: column;
+    }
+
+    .recipe-time-servings-container {
+        flex-direction: column;
+    }
+
+    .recipe-image {
+        max-height: 175px;
+    }
+}
