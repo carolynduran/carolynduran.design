@@ -1,0 +1,981 @@
+:root {
+    /* Base Colors & Theming */
+    --main-header-text-color: #0A4D8C;
+    --sale-price-text-color: #DB232D;
+
+    /* Notification/Icon Colors */
+    --success-color: #22A958;
+    --attention-color: #D6232D;
+    --warning-color: #FF7B00;
+    --out-of-stock-color: #FF7800;
+
+    /* Messaging Colors */
+    --product-unavailable-message-color: #D6232D;
+    --alternate-product-message-color: #0A4D8C;
+
+    /* Primary Button */
+    --primary-button-bg-color: var(--main-header-text-color);
+    --primary-button-text-color: #FFFFFF;
+    --primary-button-border-color: #FFFFFF;
+
+    /* Secondary Button */
+    --secondary-button-bg-color: #D9D9D9;
+    --secondary-button-text-color: var(--main-header-text-color);
+    --secondary-button-border-color: #FFFFFF;
+
+    /* Utility/Default Colors */
+    --default-button-bg: #222222;
+    --default-button-hover-bg: #000000;
+
+    /* Sizing & Radius */
+    --modal-border-radius: 30px;
+    --button-border-radius: 8px;
+    --button-border-width: 0px;
+}
+
+/* Base & Utility Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f5f7;
+    color: #000;
+}
+
+html {
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.white-swatch {
+    border: 2px solid #ccc;
+}
+
+/* Layout and Navigation (Header, Main Container) */
+.header {
+    background: white;
+    border-bottom: 1px solid #e5e5e7;
+    padding: .75rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header img {
+    float: left;
+    height: 30px;
+    width: auto;
+    border-radius: 5px;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.combined-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    color: #666;
+    display: flex;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    background: #f0f0f0;
+}
+
+.reset-btn {
+    background: var(--default-button-bg);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    margin: 0 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.reset-btn:hover {
+    background: var(--default-button-hover-bg);
+}
+
+.main-container {
+    display: flex;
+    height: calc(100vh - 68px);
+    align-items: stretch;
+}
+
+.sidebar {
+    width: 380px;
+    background: white;
+    border-right: 1px solid #e5e5e7;
+    flex-shrink: 0;
+    overflow-y: auto;
+    padding: 1.5rem;
+}
+
+:focus-visible {
+    outline: 2px solid #40458A;
+}
+
+/* Sidebar Sections & Forms */
+.section {
+    margin-bottom: 1.5rem;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem 0;
+}
+
+.section-title {
+    font-weight: 600;
+    color: #222222;
+}
+
+.chevron {
+    transition: transform 0.2s;
+    font-family: 'Material Symbols Outlined';
+    font-size: 1.2rem;
+    color: #222222;
+    transform: rotate(0deg);
+    display: flex;
+    justify-content: center;
+}
+
+.section-content {
+    padding-top: 1rem;
+    transition: all 0.2s ease-out;
+}
+
+.section.collapsed .chevron {
+    transform: rotate(-90deg);
+}
+
+.section.collapsed .section-content {
+    display: none;
+}
+
+.section-header:hover {
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.label-reset-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-group .form-label {
+    display: block;
+    font-size: 0.85rem;
+    font-family: 'Monaco','Courier New', Courier, monospace;
+    color: #666;
+    margin: 0;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.form-input {
+    color: #222222;
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #d1d1d6;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.form-group .input-error + .input-group .color-swatch {
+    background-color: #000000 !important;
+}
+
+.error-message {
+    color: #D6232D;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+.error-hidden {
+    display: none;
+}
+
+.form-input.input-error {
+    border-color: #D6232D;
+    box-shadow: 0 0 0 1px #D6232D;
+}
+
+.color-swatch {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid #d1d1d6;
+    cursor: pointer;
+}
+
+.form-group .input-group input[type="color"] {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+.slider-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.slider {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: #e5e5e7;
+    outline: none;
+    appearance: none;
+}
+
+.slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #40458A;
+    cursor: pointer;
+}
+
+.slider-value {
+    min-width: 40px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 0.5rem;
+    border: 1px solid #d1d1d6;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    resize: vertical;
+    font-family: inherit;
+}
+
+/* Individual Reset Button Styles & Custom Tooltip */
+.reset-field-btn {
+    position: relative;
+    background: none;
+    border: none;
+    color: #a5a5a5;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 1.1rem;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.reset-field-btn:hover {
+    color: #40458A;
+}
+
+.reset-field-btn .reset-icon {
+    font-size: 1rem;
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+}
+
+/* Custom Tooltip Styling */
+.reset-field-btn::after {
+    content: attr(data-title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    background: #333;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease-in-out;
+    z-index: 1000;
+}
+
+.reset-field-btn::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(3px);
+    border: 5px solid transparent;
+    border-top-color: #333;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease-in-out;
+    z-index: 1000;
+}
+
+.reset-field-btn:hover::after,
+.reset-field-btn:hover::before {
+    opacity: 1;
+}
+
+/* Preview Area, Tabs & Modals */
+.preview-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.preview-tabs {
+    display: flex;
+    justify-content: center;
+    background: white;
+    border-bottom: 1px solid #e5e5e7;
+}
+
+.tab {
+    padding: 0.75rem 2rem;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #666;
+    border-bottom: 2px solid transparent;
+}
+
+.tab.active {
+    color: #40458A;
+    border-bottom-color: #40458A;
+}
+
+.preview-content {
+    height: 100%;
+    flex-grow: 1;
+    overflow-y: auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.modal {
+    background: white;
+    border-radius: var(--modal-border-radius);
+    padding: 1.5rem 2rem;
+    max-width: 400px;
+    min-width: 300px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    margin-bottom: 0.5rem;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--main-header-text-color);
+}
+
+.modal-subtitle {
+    color: #222222;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Confirmation Modal Specifics */
+.confirmation-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.confirmation-modal-title {
+    display: flex;
+    justify-content: center;
+}
+
+.confirmation-icon-color-initial {
+    color: var(--warning-color);
+}
+.confirmation-title-color-initial {
+    color: var(--main-header-text-color);
+}
+
+.confirmation-modal-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    margin-right: 10px;
+    font-variation-settings: 'FILL' 0, 'wght' 600, 'GRAD' 0, 'opsz' 48;
+    display: inline-block;
+}
+
+.confirmation-modal-title-text {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.confirmation-modal-message {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.confirmation-modal-actions {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.confirmation-modal-actions .btn {
+    width: 100%;
+}
+
+/* Item & Product Details */
+.success-item,
+.info-item,
+.error-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.item-text {
+    color: #222222;
+}
+
+.success-item {
+    color: var(--success-color);
+}
+
+.sign-in-text-preview {
+    color: var(--attention-color);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+.error-item-preview {
+    color: var(--attention-color);
+}
+.disclaimer-text-preview {
+    font-size: 0.75rem;
+    color: #6C6C6C;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.sign-in-text {
+    color: var(--attention-color);
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.product-container {
+    padding-top: 1rem;
+}
+
+hr {
+    margin-right: -2rem;
+    margin-left: -2rem;
+    border: none;
+    border-top: 1px solid #e5e5e7;
+}
+
+.product-item {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 1rem;
+}
+
+.product-main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.product-details-text {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-right: 1rem;
+}
+
+.product-image {
+    background: #D9D9D9;
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+    flex-shrink: 0;
+    border-radius: 4px;
+}
+
+.product-name {
+    color: #222222;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.product-price-details {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.svg-style {
+    color: var(--out-of-stock-color);
+    margin-left: 0.5rem;
+    width: 81px;
+    height: 22px;
+}
+
+.price-sale {
+    color: var(--sale-price-text-color, #DB232D);
+    font-weight: 600;
+}
+
+.price-regular {
+    color: #666;
+    text-decoration: line-through;
+    margin-left: 0.5rem;
+}
+
+.price-quantity {
+    color: #222222;
+    margin-left: 0.5rem;
+}
+
+.product-message {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    width: 100%;
+}
+
+.product-message.unavailable {
+    color: var(--product-unavailable-message-color);
+    font-weight: 500;
+}
+
+.product-message.alternate {
+    color: var(--alternate-product-message-color);
+    font-weight: 500;
+}
+
+/* Button Styles (Generic & Specific) */
+.modal-actions {
+    margin-top: 1.25rem;
+    text-align: right;
+}
+
+.modal-actions .btn {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--button-border-radius);
+    border-style: solid;
+    border-width: var(--button-border-width);
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.btn-secondary {
+    background: var(--secondary-button-bg-color);
+    color: var(--secondary-button-text-color);
+    border-color: var(--secondary-button-border-color);
+}
+
+.btn-primary {
+    background: var(--primary-button-bg-color);
+    color: var(--primary-button-text-color);
+    border-color: var(--primary-button-border-color);
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    background: #f0f0f0;
+}
+
+/* Iconography & Text Overrides */
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 20px;
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 18;
+}
+
+.price-regular.no-strikethrough {
+    text-decoration: none !important;
+    color: #666 !important;
+    font-weight: 600;
+    margin-left: 0 !important;
+}
+
+.material-symbols.header-icon {
+    font-size: 26px;
+    color: #222222;
+}
+
+/* Code & Help Modals (Inline Styles Extracted) */
+.code-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.code-modal-container {
+    background: #f5f5f7;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    height: 560px;
+    position: relative;
+    z-index: 2001;
+}
+
+.code-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.code-modal-icon-spacing {
+    margin-right: 8px;
+}
+
+.code-modal-header h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222222;
+    display: flex;
+    justify-content: center;
+}
+
+.help-message-style {
+    padding: 0.5rem 0;
+    line-height: 25px;
+    font-size: 0.9rem;
+    color: #444;
+    background: none;
+}
+.help-note {
+    font-weight: 600;
+}
+
+.help-modal-body-override {
+    background: none;
+    box-shadow: none;
+}
+
+.help-content-visible {
+    display: block;
+}
+
+.help-content-area-inner-style {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    overflow-y: auto;
+}
+
+.help-image-sizing {
+    max-width: 600px;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.code-modal-body {
+    background: white;
+    border-radius: 8px;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.code-snippet-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.5rem 1rem 0;
+}
+
+.code-snippet-header .icon-btn {
+    position: relative;
+    color: #666;
+    font-size: 1.1rem;
+    padding: 0.25rem;
+}
+
+.code-snippet {
+    font-family: 'Monaco', 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    line-height: 1.1rem;
+    color: #444;
+    background: white;
+    padding: 0 1rem 1rem;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    flex-grow: 1;
+    margin-top: -30px;
+}
+
+.copy-toast {
+    position: absolute;
+    top: 0;
+    right: 35%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.help-tab-content {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.help-tab-content-top-align {
+    align-items: flex-start !important;
+}
+
+.help-tab-content .help-image {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Media Queries for Responsiveness (Mobile First) */
+@media (max-width: 768px) {
+
+    .header {
+        flex-wrap: wrap;
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+    }
+
+    .header h1 {
+        font-size: 1.25rem;
+    }
+
+    .main-container {
+        flex-direction: column-reverse;
+        height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e5e5e7;
+        padding: 1rem;
+        overflow-y: visible;
+    }
+
+    .preview-area {
+        width: 100%;
+    }
+
+    .preview-content {
+        overflow-y: visible;
+        flex-grow: 0;
+        min-height: auto;
+        padding: 1rem;
+    }
+
+    .modal {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .help-content-area-inner-style {
+        height: auto;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+
+    .help-image-sizing {
+        max-width: 100%;
+    }
+
+    .combined-title {
+        flex-shrink: 0;
+        gap: 10px;
+        margin: auto;
+    }
+
+    .header-actions {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: auto;
+    }
+
+    .reset-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .code-modal-overlay {
+        align-items: flex-start;
+        background: rgba(0, 0, 0, 0.5);
+        overflow-y: auto;
+        padding: 1rem 0;
+    }
+
+    .code-modal-container {
+        width: 95%;
+        max-width: none;
+        height: auto;
+        max-height: 95vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .code-modal-body,
+    .help-modal-body-override {
+        flex-grow: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 0;
+    }
+
+    .preview-tabs {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .tab {
+        padding: 0.5rem 1rem;
+    }
+
+    .code-snippet {
+        padding: 0 0.5rem 0.5rem;
+    }
+}

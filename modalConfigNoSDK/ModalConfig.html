@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Configuration</title>
+    <link rel="icon" type="image/png" href="./images/aalogo.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&" />
+    <link rel="stylesheet" href="style.css">
+
+    <script src="script.js"></script>
+    
+</head>
+<body>
+    <header class="header"> <div class="combined-title">
+            <img src="./images/aalogo.png" alt="Flux logo" />
+            <h1>Modal Configuration</h1>
+        </div>
+        <div class="header-actions">
+            <button class="icon-btn" onclick="showCodeModal()" aria-label="Show Code Implementation"><span class="material-symbols header-icon">code</span></button>
+            <button class="icon-btn" onclick="showHelpModal()" aria-label="Show Help Guide"><span class="material-symbols header-icon">help</span></button>
+            <button class="reset-btn" onclick="resetSettings()">Reset All</button>
+        </div>
+    </header>
+
+    <div id="codeModal" class="code-modal-overlay hidden" onclick="closeModalOnOutsideClick(event)" role="dialog" aria-modal="true" aria-labelledby="codeModalTitle">
+        <div class="code-modal-container" id="codeModalContent">
+            <div class="code-modal-header">
+                <h2 id="codeModalTitle"><span class="material-symbols code-modal-icon-spacing">code</span>Implement Code</h2>
+                <button class="icon-btn" onclick="showCodeModal()" aria-label="Close Code Modal"><span class="material-symbols-outlined header-icon">close</span></button>
+            </div>
+            <div class="help-message help-message-style">
+                To implement your modal styles, copy the code snippet below and insert it into your JavaScript file.
+            </div>
+            <div class="code-modal-body">
+                <div class="code-snippet-header">
+                    <button class="icon-btn" onclick="copyCode()" aria-label="Copy Code to Clipboard">
+                        <span id="copyToast" class="copy-toast">Copied!</span> <span class="material-symbols">content_copy</span> 
+                    </button>
+                </div>
+                <pre id="codeSnippetContent" class="code-snippet" aria-live="polite"></pre>
+            </div>
+        </div>
+    </div>
+
+    <div id="helpModal" class="code-modal-overlay hidden" onclick="closeModalOnOutsideClick(event)" role="dialog" aria-modal="true" aria-labelledby="helpModalTitle">
+        <div class="code-modal-container" id="helpModalContent">
+            <div class="code-modal-header">
+                <h2 id="helpModalTitle"><span class="material-symbols code-modal-icon-spacing">help</span> Help</h2>
+                <button class="icon-btn" onclick="showHelpModal()" aria-label="Close Help Modal"><span class="material-symbols-outlined header-icon">close</span></button>
+            </div>
+            <div class="help-message help-message-style">
+                Use this guide to view how modal styles are applied. <br>
+                <span class="help-note">Note:</span> The example below displays default styles. Your changes will not be shown.
+            </div>
+            <div class="code-modal-body help-modal-body-override">
+                <div class="preview-tabs" role="tablist">
+                    <button class="tab active" onclick="switchHelpTab('helpMain', this)" role="tab" aria-selected="true" aria-controls="helpMain">Main Modal</button>
+                    <button class="tab" onclick="switchHelpTab('helpConfirmation', this)" role="tab" aria-selected="false" aria-controls="helpConfirmation">Confirmation</button>
+                    <button class="tab" onclick="switchHelpTab('helpMoreButtons', this)" role="tab" aria-selected="false" aria-controls="helpMoreButtons">More Buttons</button>
+                </div>
+                <div class="help-content-area help-content-area-inner-style">
+                    <div id="helpMain" class="help-tab-content help-content-visible help-tab-content-top-align" role="tabpanel" tabindex="0">
+                        <div class="help-image">
+                            <img src="./images/main_modal_settings.png" alt="Main Modal Example" class="help-image-sizing">
+                        </div>
+                    </div>
+                    <div id="helpConfirmation" class="help-tab-content hidden" role="tabpanel" tabindex="0">
+                        <div class="help-image">
+                            <img src="./images/confirm_modal_settings.png" alt="Confirmation Modal Example" class="help-image-sizing">
+                        </div>
+                    </div>
+                    <div id="helpMoreButtons" class="help-tab-content hidden" role="tabpanel" tabindex="0">
+                        <div class="help-image">
+                            <img src="./images/more_button_settings.png" alt="More Buttons Modal Example" class="help-image-sizing">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-container"> <aside class="sidebar"> <section class="section" id="modalContainerSection"> <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">Modal</span>
+                    <span class="chevron material-symbols-outlined">expand_more</span>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="modalContainerBorderRadius">modalContainerBorderRadius</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('modalContainerBorderRadius')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="slider-group">
+                            <input type="range" class="slider" id="modalContainerBorderRadius" min="0" max="50" value="30" oninput="updateSetting('modalContainerBorderRadius', this.value)" aria-valuemin="0" aria-valuemax="50" aria-valuenow="30">
+                            <span class="slider-value"><span id="modalContainerBorderRadiusValue">30</span> px</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="mainHeaderTextColor">mainHeaderTextColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('mainHeaderTextColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="mainHeaderTextColor" value="#0A4D8C" aria-describedby="mainHeaderTextColorError">
+                            <div class="color-swatch" data-color="#0A4D8C" onclick="document.getElementById('mainHeaderTextColorPicker').click()"></div>
+                            <input type="color" id="mainHeaderTextColorPicker" class="hidden-input" value="#0A4D8C" onchange="updateColorFromPicker('mainHeaderTextColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="mainHeaderTextColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="section" id="iconsSection">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">Icons</span>
+                    <span class="chevron material-symbols-outlined">expand_more</span>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="successColor">successColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('successColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="successColor" value="#22A958" aria-describedby="successColorError">
+                            <div class="color-swatch" data-color="#22A958" onclick="document.getElementById('successColorPicker').click()"></div>
+                            <input type="color" id="successColorPicker" class="hidden-input" value="#22A958" onchange="updateColorFromPicker('successColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="successColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="attentionColor">attentionColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('attentionColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="attentionColor" value="#D6232D" aria-describedby="attentionColorError">
+                            <div class="color-swatch" data-color="#D6232D" onclick="document.getElementById('attentionColorPicker').click()"></div>
+                            <input type="color" id="attentionColorPicker" class="hidden-input" value="#D6232D" onchange="updateColorFromPicker('attentionColor', this.value)">
+                        </div>
+                       <span class="error-message error-hidden" id="attentionColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="questionColor">outOfStockBadgeColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('questionColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="questionColor" value="#FF7800" aria-describedby="questionColorError">
+                            <div class="color-swatch" data-color="#FF7800" onclick="document.getElementById('questionColorPicker').click()"></div>
+                            <input type="color" id="questionColorPicker" class="hidden-input" value="#FF7800" onchange="updateColorFromPicker('outOfStockBadgeColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="questionColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="warningColor">warningColor (Confirmation only)</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('warningColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="warningColor" value="#FF7B00" aria-describedby="warningColorError">
+                            <div class="color-swatch" data-color="#FF7B00" onclick="document.getElementById('warningColorPicker').click()"></div>
+                            <input type="color" id="warningColorPicker" class="hidden-input" value="#FF7B00" onchange="updateColorFromPicker('warningColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="warningColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="section" id="textSection">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">Body Text</span>
+                    <span class="chevron material-symbols-outlined">expand_more</span>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="disclaimerText">disclaimerText</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('disclaimerText')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <textarea class="textarea" id="disclaimerText" name="disclaimerText" oninput="updateSetting('disclaimerText', this.value)">Please ensure all items and quantities are correct.</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="productUnavailableMessageColor">productUnavailableMessageColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('productUnavailableMessageColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="productUnavailableMessageColor" value="#D6232D" aria-describedby="productUnavailableMessageColorError">
+                            <div class="color-swatch" data-color="#D6232D" onclick="document.getElementById('productUnavailableMessageColorPicker').click()"></div>
+                            <input type="color" id="productUnavailableMessageColorPicker" class="hidden-input" value="#D6232D" onchange="updateColorFromPicker('productUnavailableMessageColor', this.value)">
+                        </div>
+                       <span class="error-message error-hidden" id="productUnavailableMessageColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="productUnavailableMessage">productUnavailableMessage</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('productUnavailableMessage')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <textarea class="textarea" id="productUnavailableMessage" name="productUnavailableMessage" oninput="updateSetting('productUnavailableMessage', this.value)">This item is currently unavailable.</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="alternateProductMessageColor">alternateProductMessageColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('alternateProductMessageColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="alternateProductMessageColor" value="#0A4D8C" aria-describedby="alternateProductMessageColorError">
+                            <div class="color-swatch" data-color="#0A4D8C" onclick="document.getElementById('alternateProductMessageColorPicker').click()"></div>
+                            <input type="color" id="alternateProductMessageColorPicker" class="hidden-input" value="#0A4D8C" onchange="updateColorFromPicker('alternateProductMessageColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="alternateProductMessageColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="alternateProductMessage">alternateProductMessage</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('alternateProductMessage')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <textarea class="textarea" id="alternateProductMessage" name="alternateProductMessage" oninput="updateSetting('alternateProductMessage', this.value)">The item you selected previously is unavailable. We’ve found this item for you instead.</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="salePriceTextColor">salePriceTextColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('salePriceTextColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="salePriceTextColor" value="#DB232D" aria-describedby="salePriceTextColorError">
+                            <div class="color-swatch" data-color="#DB232D" onclick="document.getElementById('salePriceTextColorPicker').click()"></div>
+                            <input type="color" id="salePriceTextColorPicker" class="hidden-input" value="#DB232D" onchange="updateColorFromPicker('salePriceTextColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="salePriceTextColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                </div>
+            </section>
+
+            
+            <section class="section" id="buttonsSection">
+                <div class="section-header" onclick="toggleSection(this)">
+                    <span class="section-title">Buttons</span>
+                    <span class="chevron material-symbols-outlined">expand_more</span>
+                </div>
+                <div class="section-content">
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="primaryButtonBackgroundColor">primaryButtonBackgroundColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('primaryButtonBackgroundColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="primaryButtonBackgroundColor" value="#0A4D8C" aria-describedby="primaryButtonBackgroundColorError">
+                            <div class="color-swatch" data-color="#0A4D8C" onclick="document.getElementById('primaryButtonBackgroundColorPicker').click()"></div>
+                            <input type="color" id="primaryButtonBackgroundColorPicker" class="hidden-input" value="#0A4D8C" onchange="updateColorFromPicker('primaryButtonBackgroundColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="primaryButtonBackgroundColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="primaryButtonTextColor">primaryButtonTextColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('primaryButtonTextColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="primaryButtonTextColor" value="#FFFFFF" aria-describedby="primaryButtonTextColorError">
+                            <div class="color-swatch white-swatch" data-color="#FFFFFF" onclick="document.getElementById('primaryButtonTextColorPicker').click()"></div>
+                            <input type="color" id="primaryButtonTextColorPicker" class="hidden-input" value="#FFFFFF" onchange="updateColorFromPicker('primaryButtonTextColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="primaryButtonTextColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="primaryButtonBorderColor">primaryButtonBorderColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('primaryButtonBorderColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="primaryButtonBorderColor" value="#FFFFFF" aria-describedby="primaryButtonBorderColorError">
+                            <div class="color-swatch white-swatch" data-color="#FFFFFF" onclick="document.getElementById('primaryButtonBorderColorPicker').click()"></div>
+                            <input type="color" id="primaryButtonBorderColorPicker" class="hidden-input" value="#FFFFFF" onchange="updateColorFromPicker('primaryButtonBorderColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="primaryButtonBorderColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="secondaryButtonBackgroundColor">secondaryButtonBackgroundColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('secondaryButtonBackgroundColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="secondaryButtonBackgroundColor" value="#D9D9D9" aria-describedby="secondaryButtonBackgroundColorError">
+                            <div class="color-swatch" data-color="#D9D9D9" onclick="document.getElementById('secondaryButtonBackgroundColorPicker').click()"></div>
+                            <input type="color" id="secondaryButtonBackgroundColorPicker" class="hidden-input" value="#D9D9D9" onchange="updateColorFromPicker('secondaryButtonBackgroundColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="secondaryButtonBackgroundColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="secondaryButtonTextColor">secondaryButtonTextColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('secondaryButtonTextColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="secondaryButtonTextColor" value="#0A4D8C" aria-describedby="secondaryButtonTextColorError">
+                            <div class="color-swatch" data-color="#0A4D8C" onclick="document.getElementById('secondaryButtonTextColorPicker').click()"></div>
+                            <input type="color" id="secondaryButtonTextColorPicker" class="hidden-input" value="#0A4D8C" onchange="updateColorFromPicker('secondaryButtonTextColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="secondaryButtonTextColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="secondaryButtonBorderColor">secondaryButtonBorderColor</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('secondaryButtonBorderColor')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" class="form-input" id="secondaryButtonBorderColor" value="#FFFFFF" aria-describedby="secondaryButtonBorderColorError">
+                            <div class="color-swatch white-swatch" data-color="#FFFFFF" onclick="document.getElementById('secondaryButtonBorderColorPicker').click()"></div>
+                            <input type="color" id="secondaryButtonBorderColorPicker" class="hidden-input" value="#FFFFFF" onchange="updateColorFromPicker('secondaryButtonBorderColor', this.value)">
+                        </div>
+                        <span class="error-message error-hidden" id="secondaryButtonBorderColorError">Please enter a valid color: e.g., #0A4D8C, blue, or rgb(10, 77, 140).</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="buttonBorderRadius">buttonBorderRadius</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('buttonBorderRadius')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="slider-group">
+                            <input type="range" class="slider" id="buttonBorderRadius" min="0" max="40" value="8" oninput="updateSetting('buttonBorderRadius', this.value)" aria-valuemin="0" aria-valuemax="40" aria-valuenow="8">
+                            <span class="slider-value"><span id="buttonBorderRadiusValue">8</span> px</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="label-reset-group">
+                            <label class="form-label" for="buttonBorderWidth">buttonBorderWidth</label>
+                            <button type="button" class="reset-field-btn" onclick="resetField('buttonBorderWidth')" data-title="Reset to default"><span class="material-symbols-outlined reset-icon">restart_alt</span></button>
+                        </div>
+                        <div class="slider-group">
+                            <input type="range" class="slider" id="buttonBorderWidth" min="0" max="10" value="0" oninput="updateSetting('buttonBorderWidth', this.value)" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0">
+                            <span class="slider-value"><span id="buttonBorderWidthValue">0</span> px</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </aside>
+
+        <section class="preview-area">
+            <div class="preview-tabs" role="tablist">
+                <button class="tab active" onclick="switchTab('main', this)" role="tab" aria-selected="true" aria-controls="mainModal">Main Modal</button>
+                <button class="tab" onclick="switchTab('confirmation', this)" role="tab" aria-selected="false" aria-controls="confirmationModal">Confirmation</button>
+            </div>
+            
+            <div class="preview-content">
+                
+                <div id="mainModal" class="modal-preview" role="tabpanel" tabindex="0">
+                    <div class="modal" id="previewModal">
+                        <div class="modal-header">
+                            <div class="modal-title">Review Your Items</div>
+                            <div class="modal-subtitle">The following have been added for you:</div>
+                        </div>
+                        
+                        <div class="success-item">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="item-text">3 items added to your list</span>
+                        </div>
+                        <div class="success-item">
+                            <span class="material-symbols-outlined">check_circle</span>
+                            <span class="item-text">2 offers clipped</span>
+                        </div>
+                        
+                        <div id="disclaimerTextPreview" class="disclaimer-text-preview">
+                            Please ensure all items and quantities are correct.
+                        </div>
+                        
+                        <div class="error-container">
+                            <div class="sign-in-text sign-in-text-preview">Sign in to confirm the following actions:</div>
+                            
+                            <!-- <div class="error-item error-item-preview">
+                                <span class="material-symbols-outlined">error</span>
+                                <span class="item-text">Save recipes (1)</span>
+                            </div> -->
+                            <div class="error-item error-item-preview">
+                                <span class="material-symbols-outlined">error</span>
+                                <span class="item-text">Add items to your cart (2):</span>
+                            </div>
+                        </div>
+                        <hr>
+                        
+                        <div class="product-container">
+                            <div class="product-item">
+                                <div class="product-main-content">
+                                    <div class="product-image" role="img" aria-label="Product thumbnail"></div>
+                                    <div class="product-details-text">
+                                        <div class="product-name">Product Name</div>
+                                        <div class="product-price-details">
+                                            <div class="price-sale"></div>
+                                            <div id="regPrice1" class="price-regular">$3.00</div>
+                                            <div class="price-quantity">Qty: 0</div>
+                                            <svg id="outOfStockSvg" width="81" height="22" viewBox="0 0 96 27" fill="none" xmlns="http://www.w3.org/2000/svg" class="svg-style" role="img" aria-label="Out of stock badge">
+                                                <rect x="0.5" y="1" width="95" height="25" rx="12.5" stroke="currentColor"/>
+                                                <path d="M20.7305 14.2051C20.7305 14.8652 20.6465 15.4668 20.4785 16.0098C20.3145 16.5488 20.0664 17.0137 19.7344 17.4043C19.4023 17.791 18.9863 18.0898 18.4863 18.3008C17.9863 18.5117 17.4004 18.6172 16.7285 18.6172C16.0449 18.6172 15.4512 18.5117 14.9473 18.3008C14.4473 18.0898 14.0312 17.7891 13.6992 17.3984C13.3711 17.0078 13.125 16.541 12.9609 15.998C12.7969 15.4551 12.7148 14.8535 12.7148 14.1934C12.7148 13.3105 12.8594 12.541 13.1484 11.8848C13.4414 11.2246 13.8848 10.7129 14.4785 10.3496C15.0762 9.98242 15.8301 9.79883 16.7402 9.79883C17.6309 9.79883 18.3711 9.98047 18.9609 10.3438C19.5508 10.707 19.9922 11.2188 20.2852 11.8789C20.582 12.5352 20.7305 13.3105 20.7305 14.2051ZM14.1914 14.2051C14.1914 14.8652 14.2812 15.4375 14.4609 15.9219C14.6406 16.4023 14.916 16.7734 15.2871 17.0352C15.6621 17.293 16.1426 17.4219 16.7285 17.4219C17.3184 17.4219 17.7988 17.293 18.1699 17.0352C18.541 16.7734 18.8145 16.4023 18.9902 15.9219C19.166 15.4375 19.2539 14.8652 19.2539 14.2051C19.2539 13.2012 19.0527 12.416 18.6504 11.8496C18.252 11.2793 17.6152 10.9941 16.7402 10.9941C16.1543 10.9941 15.6719 11.123 15.293 11.3809C14.918 11.6387 14.6406 12.0078 14.4609 12.4883C14.2812 12.9648 14.1914 13.5371 14.1914 14.2051ZM28.084 12.0137V18.5H27L26.8125 17.627H26.7363C26.5996 17.8496 26.4258 18.0352 26.2148 18.1836C26.0039 18.3281 25.7695 18.4355 25.5117 18.5059C25.2539 18.5801 24.9824 18.6172 24.6973 18.6172C24.209 18.6172 23.791 18.5352 23.4434 18.3711C23.0996 18.2031 22.8359 17.9453 22.6523 17.5977C22.4688 17.25 22.377 16.8008 22.377 16.25V12.0137H23.7598V15.9922C23.7598 16.4961 23.8613 16.873 24.0645 17.123C24.2715 17.373 24.5918 17.498 25.0254 17.498C25.4434 17.498 25.7754 17.4121 26.0215 17.2402C26.2676 17.0684 26.4414 16.8145 26.543 16.4785C26.6484 16.1426 26.7012 15.7305 26.7012 15.2422V12.0137H28.084ZM32.4727 17.5039C32.6523 17.5039 32.8301 17.4883 33.0059 17.457C33.1816 17.4219 33.3418 17.3809 33.4863 17.334V18.377C33.334 18.4434 33.1367 18.5 32.8945 18.5469C32.6523 18.5938 32.4004 18.6172 32.1387 18.6172C31.7715 18.6172 31.4414 18.5566 31.1484 18.4355C30.8555 18.3105 30.623 18.0977 30.4512 17.7969C30.2793 17.4961 30.1934 17.0801 30.1934 16.5488V13.0625H29.3086V12.4473L30.2578 11.9609L30.709 10.5723H31.5762V12.0137H33.4336V13.0625H31.5762V16.5312C31.5762 16.8594 31.6582 17.1035 31.8223 17.2637C31.9863 17.4238 32.2031 17.5039 32.4727 17.5039ZM43.6641 15.2422C43.6641 15.7812 43.5938 16.2598 43.4531 16.6777C43.3125 17.0957 43.1074 17.4492 42.8379 17.7383C42.5684 18.0234 42.2441 18.2422 41.8652 18.3945C41.4863 18.543 41.0586 18.6172 40.582 18.6172C40.1367 18.6172 39.7285 18.543 39.3574 18.3945C38.9863 18.2422 38.6641 18.0234 38.3906 17.7383C38.1211 17.4492 37.9121 17.0957 37.7637 16.6777C37.6152 16.2598 37.541 15.7812 37.541 15.2422C37.541 14.5273 37.6641 13.9219 37.9102 13.4258C38.1602 12.9258 38.5156 12.5449 38.9766 12.2832C39.4375 12.0215 39.9863 11.8906 40.623 11.8906C41.2207 11.8906 41.748 12.0215 42.2051 12.2832C42.6621 12.5449 43.0195 12.9258 43.2773 13.4258C43.5352 13.9258 43.6641 14.5312 43.6641 15.2422ZM38.959 15.2422C38.959 15.7148 39.0156 16.1191 39.1289 16.4551C39.2461 16.791 39.4258 17.0488 39.668 17.2285C39.9102 17.4043 40.2227 17.4922 40.6055 17.4922C40.9883 17.4922 41.3008 17.4043 41.543 17.2285C41.7852 17.0488 41.9629 16.791 42.0762 16.4551C42.1895 16.1191 42.2461 15.7148 42.2461 15.2422C42.2461 14.7695 42.1895 14.3691 42.0762 14.041C41.9629 13.709 41.7852 13.457 41.543 13.2852C41.3008 13.1094 40.9863 13.0215 40.5996 13.0215C40.0293 13.0215 39.6133 13.2129 39.3516 13.5957C39.0898 13.9785 38.959 14.5273 38.959 15.2422ZM48.4863 13.0625H46.9102V18.5H45.5332V13.0625H44.4727V12.4004L45.5332 11.9961V11.5449C45.5332 10.9941 45.6191 10.5566 45.791 10.2324C45.9668 9.9082 46.2168 9.67578 46.541 9.53516C46.8691 9.39062 47.2598 9.31836 47.7129 9.31836C48.0098 9.31836 48.2812 9.34375 48.5273 9.39453C48.7734 9.44141 48.9805 9.49609 49.1484 9.55859L48.791 10.6016C48.6582 10.5586 48.5098 10.5195 48.3457 10.4844C48.1816 10.4453 48.0059 10.4258 47.8184 10.4258C47.5059 10.4258 47.2754 10.5234 47.127 10.7188C46.9824 10.9141 46.9102 11.1992 46.9102 11.5742V12.0137H48.4863V13.0625ZM57.7969 16.168C57.7969 16.6758 57.6719 17.1133 57.4219 17.4805C57.1758 17.8477 56.8203 18.1289 56.3555 18.3242C55.8945 18.5195 55.3438 18.6172 54.7031 18.6172C54.3906 18.6172 54.0918 18.5996 53.8066 18.5645C53.5215 18.5293 53.252 18.4785 52.998 18.4121C52.748 18.3418 52.5195 18.2578 52.3125 18.1602V16.8359C52.6602 16.9883 53.0488 17.127 53.4785 17.252C53.9082 17.373 54.3457 17.4336 54.791 17.4336C55.1543 17.4336 55.4551 17.3867 55.6934 17.293C55.9355 17.1953 56.1152 17.0586 56.2324 16.8828C56.3496 16.7031 56.4082 16.4941 56.4082 16.2559C56.4082 16.002 56.3398 15.7871 56.2031 15.6113C56.0664 15.4355 55.8594 15.2754 55.582 15.1309C55.3086 14.9824 55.9648 14.8242 54.5508 14.6562C54.2695 14.543 54 14.4141 53.7422 14.2695C53.4883 14.125 53.2617 13.9551 53.0625 13.7598C52.8633 13.5645 52.7051 13.334 52.5879 13.0684C52.4746 12.7988 52.418 12.4824 52.418 12.1191C52.418 11.6348 52.5332 11.2207 52.7637 10.877C52.998 10.5332 53.3262 10.2695 53.748 10.0859C54.1738 9.90234 54.6699 9.81055 55.2363 9.81055C55.6855 9.81055 56.1074 9.85742 56.502 9.95117C56.9004 10.0449 57.291 10.1777 57.6738 10.3496L57.2285 11.4805C56.877 11.3359 56.5352 11.2207 56.2031 11.1348C55.875 11.0488 55.5391 11.0059 55.1953 11.0059C54.8984 11.0059 54.6465 11.0508 54.4395 11.1406C54.2324 11.2305 54.0742 11.3574 53.9648 11.5215C53.8594 11.6816 53.8066 11.873 53.8066 12.0957C53.8066 12.3457 53.8672 12.5566 53.9883 12.7285C54.1133 12.8965 54.3047 13.0508 54.5625 13.1914C54.8242 13.332 55.1602 13.4883 55.5703 13.6602C56.043 13.8555 56.4434 14.0605 56.7715 14.2754C57.1035 14.4902 57.3574 14.748 57.5332 15.0488C57.709 15.3457 57.7969 15.7188 57.7969 16.168ZM61.7227 17.5039C61.9023 17.5039 62.0801 17.4883 62.2559 17.457C62.4316 17.4219 62.5918 17.3809 62.7363 17.334V18.377C62.584 18.4434 62.3867 18.5 62.1445 18.5469C61.9023 18.5938 61.6504 18.6172 61.3887 18.6172C61.0215 18.6172 60.6914 18.5566 60.3984 18.4355C60.1055 18.3105 59.873 18.0977 59.7012 17.7969C59.5293 17.4961 59.4434 17.0801 59.4434 16.5488V13.0625H58.5586V12.4473L59.5078 11.9609L59.959 10.5723H60.8262V12.0137H62.6836V13.0625H60.8262V16.5312C60.8262 16.8594 60.9082 17.1035 61.0723 17.2637C61.2363 17.4238 61.4531 17.5039 61.7227 17.5039ZM69.7969 15.2422C69.7969 15.7812 69.7266 16.2598 69.5859 16.6777C69.4453 17.0957 69.2402 17.4492 68.9707 17.7383C68.7012 18.0234 68.377 18.2422 67.998 18.3945C67.6191 18.543 67.1914 18.6172 66.7148 18.6172C66.2695 18.6172 65.8613 18.543 65.4902 18.3945C65.1191 18.2422 64.7969 18.0234 64.5234 17.7383C64.2539 17.4492 64.0449 17.0957 63.8965 16.6777C63.748 16.2598 63.6738 15.7812 63.6738 15.2422C63.6738 14.5273 63.7969 13.9219 64.043 13.4258C64.293 12.9258 64.6484 12.5449 65.1094 12.2832C65.5703 12.0215 66.1191 11.8906 66.7559 11.8906C67.3535 11.8906 67.8809 12.0215 68.3379 12.2832C68.7949 12.5449 69.1523 12.9258 69.4102 13.4258C69.668 13.9258 69.7969 14.5312 69.7969 15.2422ZM65.0918 15.2422C65.0918 15.7148 65.1484 16.1191 65.2617 16.4551C65.3789 16.791 65.5586 17.0488 65.8008 17.2285C66.043 17.4043 66.3555 17.4922 66.7383 17.4922C67.1211 17.4922 67.4336 17.4043 67.6758 17.2285C67.918 17.0488 68.0957 16.791 68.209 16.4551C68.3223 16.1191 68.3789 15.7148 68.3789 15.2422C68.3789 14.7695 68.3223 14.3691 68.209 14.041C68.0957 13.709 67.918 13.457 67.6758 13.2852C67.4336 13.1094 67.1191 13.0215 66.7324 13.0215C66.1621 13.0215 65.7461 13.2129 65.4844 13.5957C65.2227 13.9785 65.0918 14.5273 65.0918 15.2422ZM73.9922 18.6172C73.3789 18.6172 72.8477 18.498 72.3984 18.2598C71.9492 18.0215 71.6035 17.6562 71.3613 17.1641C71.1191 16.6719 70.998 16.0469 70.998 15.2891C70.998 14.5 71.1309 13.8555 71.3965 13.3555C71.6621 12.8555 72.0293 12.4863 72.498 12.248C72.9707 12.0098 73.5117 11.8906 74.1211 11.8906C74.5078 11.8906 74.8574 11.9297 75.1699 12.0078C75.4863 12.082 75.7539 12.1738 75.9727 12.2832L75.5625 13.3848C75.3242 13.2871 75.0801 13.2051 74.8301 13.1387C74.5801 13.0723 74.3398 13.0391 74.1094 13.0391C73.7305 13.0391 73.4141 13.123 73.1602 13.291C72.9102 13.459 72.7227 13.709 72.5977 14.041C72.4766 14.373 72.416 14.7852 72.416 15.2773C72.416 15.7539 72.4785 16.1562 72.6035 16.4844C72.7285 16.8086 72.9141 17.0547 73.1602 17.2227C73.4062 17.3867 73.709 17.4688 74.0684 17.4688C74.4238 17.4688 74.7422 17.4258 75.0234 17.3398C75.3047 17.2539 75.5703 17.1426 75.8203 17.0059V18.2012C75.5742 18.3418 75.3105 18.4453 75.0293 18.5117C74.748 18.582 74.4023 18.6172 73.9922 18.6172ZM78.7207 9.38281V13.7891C78.7207 13.9883 78.7129 14.207 78.6973 14.4453C78.6816 14.6797 78.666 14.9004 78.6504 15.1074H78.6797C78.7812 14.9707 78.9023 14.8105 79.043 14.627C79.1875 14.4434 79.3242 14.2832 79.4531 14.1465L81.4336 12.0137H83.0156L80.4199 14.8027L83.1855 18.5H81.5684L79.4941 15.6523L78.7207 16.3145V18.5H77.3438V9.38281H78.7207Z" fill="currentColor"/>
+                                            </svg>
+                                        </div>
+                                        <div class="product-message unavailable" id="productUnavailableMessagePreview">
+                                            This item is currently unavailable.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="product-item">
+                                <div class="product-main-content">
+                                    <div class="product-image" role="img" aria-label="Product thumbnail"></div>
+                                    <div class="product-details-text">
+                                        <div class="product-name">Product Name</div>
+                                        <div class="product-price-details">
+                                            <div class="price-sale">$2.49</div>
+                                            <div class="price-regular">$5.99</div>
+                                            <div class="price-quantity">Qty: 2</div>
+                                        </div>
+                                        <div class="product-message alternate" id="alternateProductMessagePreview">
+                                            The item you selected previously is unavailable. We’ve found this item for you instead.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                        
+                        <div class="modal-actions">
+                            <button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                            <button class="btn btn-primary" id="signInBtn">Sign In</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="confirmationModal" class="modal-preview hidden" role="tabpanel" tabindex="0">
+                    <div class="modal" id="previewModal2">
+                        <div class="confirmation-modal-content">
+                            <div class="confirmation-modal-title">
+                                <span class="material-symbols-outlined confirmation-modal-icon confirmation-icon-color-initial">warning</span>
+                                <div class="confirmation-modal-title-text confirmation-title-color-initial">Are you sure you want to cancel?</div>
+                            </div>
+                            <p class="confirmation-modal-message">
+                                By canceling, you will lose all unconfirmed items.
+                            </p>
+                            
+                            <div class="confirmation-modal-actions">
+                                <button class="btn btn-secondary" id="continueCancelBtn">Continue Canceling</button>
+                                <button class="btn btn-primary" id="goBackBtn">Go Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    
+</body>
+</html>
