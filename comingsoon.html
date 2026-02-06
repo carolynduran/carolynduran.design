@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carolyn Duran - Advertising Platform Redesign</title>
+    <link rel="stylesheet" href="css/style.css">
+<style>
+        /* --- Specific styles for the placeholder page --- */
+        .content-container-placeholder {
+            max-width: 1200px;
+            /* width: var(--desktop-content-width); */
+            margin: 0 auto;
+            padding: 0 var(--mobile-content-padding);
+        }
+
+        .placeholder-main {
+            min-height: calc(100vh - 200px); /* Full viewport height minus footer */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 4rem var(--mobile-content-padding);
+        }
+
+        .placeholder-card {
+            /* background-color: var(--color-white); */
+            /* border: 1px solid var(--color-light-grey-border); */
+            border-radius: 8px;
+            padding: 3rem 3rem;
+            max-width: 600px;
+            /* box-shadow: 0 4px 12px rgba(0, 26, 51, 0.05); Soft shadow from primary color */
+        }
+
+        .placeholder-card h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--color-primary); /* Use accent color for emphasis */
+            margin-bottom: 1rem;
+        }
+
+        .placeholder-card p {
+            font-size: 1.1rem;
+            color: var(--color-gray-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .placeholder-icon {
+            font-size: 3rem;
+            line-height: 1;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+        }
+
+        .back-link {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header sticky-header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">CD</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="assets/files/carolynduran-resume.pdf" target="_blank" class="nav-link resume-link">Resume<img src="assets/icons/resume-link.svg" alt="New Tab Icon" loading="lazy"></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="placeholder-main">
+        <div class="content-container-placeholder">
+            <div class="placeholder-card">
+                <!-- <div class="placeholder-icon" aria-hidden="true">🛠️</div> -->
+                <h2>Work in Progress</h2>
+                <p>Currently building something exciting for this page.<br>Check back soon!</p>
+                <a href="index.html" class="back-link">
+                    &larr; Go to Home
+                </a>
+            </div>
+        </div>
+    </main>
+
+        <footer class="project-footer">
+        <div class="content-container">
+                    <a href="project1.html" class="project-title">
+                        <span class="wipe-text-content" data-text="Recipe Ad Design">Recipe Ad Design</span>
+                    </a>
+                    <a href="project2.html" class="project-title">
+                        <span class="wipe-text-content active" data-text="Advertising Platform Redesign">Advertising Platform Redesign</span>
+                    </a>
+                    <a href="project3.html" class="project-title">
+                        <span class="wipe-text-content" data-text="Design System Development">Design System Development</span>
+                    </a>
+                    <a href="project4.html" class="project-title">
+                        <span class="wipe-text-content" data-text="Payload Site Design">Payload Site Design</span>
+                    </a>
+                    <a href="project5.html" class="project-title">
+                        <span class="wipe-text-content" data-text="Mobile Grocery List App">Mobile Grocery List App</span>
+                    </a>
+                    <!-- <a href="project6.html" class="project-title">
+                        <span class="wipe-text-content" data-text="Online Political Discussions Research">Online Political Discussions Research</span>
+                    </a> -->
+                    <a href="project7.html" class="project-title">
+                        <span class="wipe-text-content" data-text="Photography">Photography</span>
+                    </a>
+        </div>
+    </footer>
+
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/carolynduran/" target="_blank" aria-label="LinkedIn"><img src="assets/icons/linkedin.svg" alt="LinkedIn" loading="lazy"></a>
+                <a href="mailto:cduran@umich.edu" target="_blank" aria-label="Email"><img src="assets/icons/email.svg" alt="Email" loading="lazy"></a>
+                <a href="https://calendar.app.google/7PntnAT7T3cLWonXA" target="_blank" aria-label="Calendar"><img src="assets/icons/calendar.svg" alt="Calendar" loading="lazy"></a>
+            </div>
+            <p>&copy; <span id="currentYear"></span> Carolyn Duran. All Rights Reserved.</p>
+            <!-- <button class="jump-to-top" onclick="window.scrollTo(0, 0);">Jump to Top <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg></button> -->
+        </div>
+    </footer>
+
+</body>
+</html>
