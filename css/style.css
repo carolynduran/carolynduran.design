@@ -59,6 +59,10 @@ p, ol li {
     color: var(--color-gray-text);
 }
 
+p {
+    margin-bottom: 0.75rem;
+}
+
 ol li {
     margin-left: 1.2rem;
     margin-bottom: 0.5rem;
@@ -272,7 +276,10 @@ a:hover {
 
 .hero-text-bullets p {
     margin-bottom: 0;
-    display: flex;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    /* gap: 0.5rem; */
     justify-content: center;
     font-weight: 400;
 }
@@ -332,7 +339,7 @@ a:hover {
 .about-actions .btn {
     display: inline-flex;
     align-items: center;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 10px;
     margin-right: 1rem;
     transition: background-color 0.3s;
@@ -655,6 +662,8 @@ a:hover {
     margin: 1rem 0 2rem 0;
 }
 
+
+
 .scrollable-gallery {
     display: flex;
     overflow-x: scroll;
@@ -756,6 +765,10 @@ a:hover {
     padding: 0.5rem 0;
     margin: 2rem 0;
     border: 1px solid var(--color-light-grey-border);
+}
+
+.photo-section>.gallery-container{
+    margin: 0;
 }
 
 .photo-section .subsection-heading {
