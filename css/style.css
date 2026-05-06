@@ -1048,6 +1048,7 @@ a:hover {
     flex-grow: 1;
     text-align: right;
     font-size: 0.9rem;
+    margin-bottom: 0 !important;
 }
 
 /* ==========================================================================
